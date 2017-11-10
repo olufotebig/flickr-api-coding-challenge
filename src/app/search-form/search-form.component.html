@@ -1,23 +1,30 @@
 <div class="row">
   <div class="col-sm-6 col-sm-offset-3">
-    <form class="pa4 black-80">
+    <p *ngIf="searchServiceErrorMsg" class="red">{{searchServiceErrorMsg}}</p>
+    <!-- TODO: flash error message -->
+    <form class="pa4 black-80" (ngSubmit)="onSubmit()" #searchForm="ngForm">
       <div class="measure">
-        <label for="name" class="f6 b db mb2">Search Tag
+        <label for="search-tag" class="f6 b db mb2">Search Tag
           <span class="normal black-60">(required)</span>
         </label>
-        <input id="name" class="input-reset ba b--black-20 pa2 mb2 db w-100" type="text" aria-describedby="name-desc">
-        <small id="name-desc" class="f6 red db mb2">Error text for the form control.</small>
+        <input name="search-tag" [(ngModel)]="searchTagInput" class="input-reset ba b--black-20 pa2 mb2 db w-100" type="text" #searchtag="ngModel"
+          required>
+        <span [hidden]="searchtag.pristine || searchtag.valid">
+          <small class="f6 red db mb2">Search tag is required.</small>
+        </span>
       </div>
       <div class="measure mt3">
-        <label for="name" class="f6 b db mb2">User Id
+        <label for="user-id" class="f6 b db mb2">User Id
           <span class="normal black-60">(optional)</span>
         </label>
-        <input id="name" class="input-reset ba b--black-20 pa2 mb2 db w-100" type="text" aria-describedby="name-desc">
-        <small id="name-desc" class="f6 red db mb2">Error text for the form control.</small>
+        <input name="user-id" [(ngModel)]="userIdInput" class="input-reset ba b--black-20 pa2 mb2 db w-100" type="text">
+        <span hidden>
+          <small class="f6 red db mb2">Error text for the form control.</small>
+        </span>
       </div>
       <div class="">
-        <input class=" b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib" type="button" value="Cancel">
-        <input class=" b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib" type="submit" value="Submit">
+        <input class=" b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib" type="button" value="Cancel" (click)="onCancel()">
+        <input class=" b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib" type="submit" value="Submit" [disabled]="!searchForm.form.valid">
       </div>
     </form>
   </div>

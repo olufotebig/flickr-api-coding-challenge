@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { SearchService } from '../search.service';
+import { Photo } from '../photo';
 
 @Component({
   selector: 'app-search-form',
@@ -6,10 +8,43 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./search-form.component.css']
 })
 export class SearchFormComponent implements OnInit {
+  searchTagInput: string;
+  userIdInput: string;
+  searchServiceErrorMsg: string;
+  constructor(private searchService: SearchService) {
+    // subscribe to Error Subject: triggered if something goes wrong with api request
+    this.searchService.tagPhotoErrorSubject.subscribe({
+      next: v => this.onServiceError(v)
+    });
 
-  constructor() { }
-
-  ngOnInit() {
+    this.searchService.tagPhotoSubject.subscribe({
+      next: photo => this.onPhotoResult(photo)
+    });
   }
 
+  ngOnInit() {}
+  onSubmit() {
+    this.clearErrorMessage();
+    this.searchService.searchTag(this.searchTagInput, this.userIdInput);
+    // TODO show api is working
+  }
+
+  onCancel() {
+    this.searchTagInput = '';
+    this.userIdInput = '';
+    this.clearErrorMessage();
+  }
+
+  clearErrorMessage() {
+    this.searchServiceErrorMsg = '';
+  }
+
+  onServiceError(msg: string) {
+    this.searchServiceErrorMsg = msg;
+  }
+
+  onPhotoResult(photo: Photo) {
+    // TODO: Store photo to memory
+    // console.log('photo', photo);
+  }
 }
