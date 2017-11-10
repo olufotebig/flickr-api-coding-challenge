@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+
+import { PhotoStoreService } from '../photo-store.service';
 import { SearchService } from '../search.service';
+
 import { Photo } from '../photo';
 
 @Component({
@@ -11,7 +14,10 @@ export class SearchFormComponent implements OnInit {
   searchTagInput: string;
   userIdInput: string;
   searchServiceErrorMsg: string;
-  constructor(private searchService: SearchService) {
+  constructor(
+    private searchService: SearchService,
+    private photoStoreService: PhotoStoreService
+  ) {
     // subscribe to Error Subject: triggered if something goes wrong with api request
     this.searchService.tagPhotoErrorSubject.subscribe({
       next: v => this.onServiceError(v)
@@ -44,7 +50,7 @@ export class SearchFormComponent implements OnInit {
   }
 
   onPhotoResult(photo: Photo) {
-    // TODO: Store photo to memory
-    // console.log('photo', photo);
+    this.photoStoreService.insert(photo);
+    this.onCancel();
   }
 }
