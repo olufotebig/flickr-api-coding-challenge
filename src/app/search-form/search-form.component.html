@@ -2,7 +2,7 @@
   <div class="col-sm-6 col-sm-offset-3">
     <p *ngIf="searchServiceErrorMsg" class="red">{{searchServiceErrorMsg}}</p>
     <!-- TODO: flash error message -->
-    <form class="pa4 black-80" (ngSubmit)="onSubmit()" #searchForm="ngForm">
+    <form class="pa4 black-80" (ngSubmit)="onSubmit(searchForm)" #searchForm="ngForm">
       <div class="measure">
         <label for="search-tag" class="f6 b db mb2">Search Tag
           <span class="normal black-60">(required)</span>
