@@ -48,6 +48,7 @@ export class SearchService {
           } else {
             let photo: Photo;
             photo = data['photos']['photo'][0];
+            photo['tag'] = tag;
             this.tagPhotoSubject.next(photo);
           }
         } else {
