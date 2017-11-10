@@ -1,3 +1,10 @@
-<p>
-  detail-page works!
-</p>
+<h3>image gallery</h3>
+<div class="row">
+  <div class="col-sm-3" *ngFor="let photo of currentlyDisplayedPhotos">
+    <img [src]="['https://farm',photo.farm,'.staticflickr.com/',photo.server,'/',photo.id,'_',photo.secret,'.jpg'].join('')"
+      alt="">
+  </div>
+</div>
+
+<button>Prev</button>
+<button>Next</button>

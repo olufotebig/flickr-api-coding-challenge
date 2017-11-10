@@ -20,7 +20,7 @@ export class SearchService {
     this.tagPhotoSubject = new Subject();
     this.tagPhotoErrorSubject = new Subject();
   }
-  searchTag(tag: string, user_id) {
+  searchTag(tag: string, user_id: string) {
     let params = new HttpParams();
     params = params.append('api_key', FLICKR_API_KEY);
     params = params.append('method', 'flickr.photos.search');
