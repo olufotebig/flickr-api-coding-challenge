@@ -17,4 +17,5 @@ export class Photo {
   url_q: string;
   height_q: string;
   width_q: string;
+  tag: string;
 }
