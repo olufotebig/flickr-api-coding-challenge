@@ -1,3 +1,29 @@
-<p>
-  search-result-list works!
-</p>
+<div class="row">
+  <div class="col-sm-6 col-sm-offset-3">
+    <button (click)="onSort('views')">Views</button>
+    <button (click)="onSort('datetaken')">Date Taken</button>
+    <button (click)="onSort('dateupload')">Date uploaded</button>
+    <button (click)="onSort('ownername')">Owners name</button>
+  </div>
+</div>
+
+<section class="cf w-100 pa2-ns">
+
+  <article *ngFor="let photo of sortedPhotoData" class="fl w-100 w-50-m  w-25-ns pa2-ns">
+    <a [href]="'/detail/' + photo.tag" class="link">
+      <div class="aspect-ratio aspect-ratio--1x1">
+        <img [src]="photo.url_q" class="db bg-center cover aspect-ratio--object" />
+      </div>
+      <p class="mv0 black-90">Search tag: {{photo.tag}}
+        <br> Owner's name: {{photo.ownername}}
+        <br> Upload date: {{photo.dateupload | date}}
+        <!-- TODO Fix filter does not work for date timestamp-->
+        <br> Date photo was taken: {{photo.datetaken | date}}
+        <br> Number of view: {{photo.views}}</p>
+    </a>
+  </article>
+
+</section>
+<div *ngIf="!photoData">
+  No pictures
+</div>
