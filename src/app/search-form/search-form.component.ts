@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 
 import { PhotoStoreService } from '../photo-store.service';
 import { SearchService } from '../search.service';
@@ -11,6 +12,7 @@ import { Photo } from '../photo';
   styleUrls: ['./search-form.component.css']
 })
 export class SearchFormComponent implements OnInit {
+  form: NgForm;
   searchTagInput: string;
   userIdInput: string;
   searchServiceErrorMsg: string;
@@ -29,7 +31,8 @@ export class SearchFormComponent implements OnInit {
   }
 
   ngOnInit() {}
-  onSubmit() {
+  onSubmit(form: NgForm) {
+    this.form = form;
     this.clearErrorMessage();
     this.searchService.searchTag(this.searchTagInput, this.userIdInput);
     // TODO show api is working
@@ -51,6 +54,6 @@ export class SearchFormComponent implements OnInit {
 
   onPhotoResult(photo: Photo) {
     this.photoStoreService.insert(photo);
-    this.onCancel();
+    this.form.reset();
   }
 }
