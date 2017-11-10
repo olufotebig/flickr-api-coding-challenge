@@ -5,11 +5,13 @@ import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { StartPageComponent } from './start-page/start-page.component';
+import { DetailPageComponent } from './detail-page/detail-page.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    StartPageComponent
+    StartPageComponent,
+    DetailPageComponent
   ],
   imports: [
     BrowserModule,
