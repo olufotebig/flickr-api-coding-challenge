@@ -30,7 +30,7 @@ export class DetailPageComponent implements OnInit {
   }
 
   loadPage(page: string) {
-    this.galleryService.getPage(page, this.tag);
+    this.galleryService.getPage(this.tag, page);
   }
 
   setPhotos(photos) {
