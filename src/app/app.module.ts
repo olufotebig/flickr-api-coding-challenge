@@ -14,7 +14,7 @@ import { SearchResultListComponent } from './search-result-list/search-result-li
 
 const appRoutes: Routes = [
   { path: '', component: StartPageComponent },
-  { path: 'detail', component: DetailPageComponent },
+  { path: 'detail/:tag', component: DetailPageComponent },
   { path: '**', component: PageNotFoundComponent }
 ];
 
