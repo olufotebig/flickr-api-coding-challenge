@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 import { DetailPageComponent } from './detail-page/detail-page.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { StartPageComponent } from './start-page/start-page.component';
+import { SearchFormComponent } from './search-form/search-form.component';
 
 const appRoutes: Routes = [
   { path: '', component: StartPageComponent },
@@ -20,7 +21,8 @@ const appRoutes: Routes = [
     AppComponent,
     StartPageComponent,
     DetailPageComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    SearchFormComponent
   ],
   imports: [
     BrowserModule,
